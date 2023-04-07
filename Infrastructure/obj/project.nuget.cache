@@ -1,0 +1,13 @@
+{
+  "version": 2,
+  "dgSpecHash": "kH/Y+BsgKXpCyhg54W5QWzpwZCuBhvehG6Dvs3C9Gd7uD+wA7wpZo8uuFGnVC4UEi4fANpBdziwAjwy23fu6uw==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\acer\\source\\repos\\OnlineQueue\\Infrastructure\\Infrastructure.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\acer\\.nuget\\packages\\dapper\\2.0.123\\dapper.2.0.123.nupkg.sha512",
+    "C:\\Users\\acer\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\6.0.0\\microsoft.extensions.logging.abstractions.6.0.0.nupkg.sha512",
+    "C:\\Users\\acer\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512",
+    "C:\\Users\\acer\\.nuget\\packages\\npgsql\\7.0.2\\npgsql.7.0.2.nupkg.sha512"
+  ],
+  "logs": []
+}
