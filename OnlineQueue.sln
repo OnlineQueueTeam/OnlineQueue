@@ -16,6 +16,9 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infrastructure", "Infrastructure\Infrastructure.csproj", "{18B0A104-B237-4EAC-B167-ADEB42A41F81}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "OnlineQueue.Application", "OnlineQueue.Application", "{99926239-47A9-42B1-9B36-C33089394033}"
+	ProjectSection(SolutionItems) = preProject
+		myfile.txt = myfile.txt
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
