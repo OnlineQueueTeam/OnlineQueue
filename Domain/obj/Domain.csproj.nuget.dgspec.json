@@ -1,7 +1,7 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\user\\Desktop\\OnlineuQueue\\Domain\\Domain.csproj": {}
+    "C:\\Users\\acer\\source\\repos\\OnlineQueue\\Domain\\Domain.csproj": {}
   },
   "projects": {
     "C:\\Users\\acer\\source\\repos\\OnlineQueue\\Domain\\Domain.csproj": {
@@ -17,7 +17,7 @@
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\user\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\acer\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
