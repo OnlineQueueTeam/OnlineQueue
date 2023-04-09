@@ -6,12 +6,11 @@ using System.Threading.Tasks;
 
 namespace Domain.Models
 {
-    public class History
+    public class Hospital
     {
         public int Id { get; set; }
-        public  required int PatientId { get; set; }
-        public required int PhysicianId { get; set; }
-        public DateTime VisitTime { get; set; }
+        public required string Name { get; set; }
+        public required string Address { get; set; }
 
     }
 }
