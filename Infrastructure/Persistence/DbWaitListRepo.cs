@@ -1,5 +1,6 @@
 ﻿using Dapper;
 using Domain.Models;
+using Infrastructure.Connection;
 using Npgsql;
 using System;
 using System.Collections.Generic;
@@ -12,10 +13,10 @@ namespace Infrastructure.Persistence
     public class DbWaitListRepo : IRepository<WaitList>
     {
 
-
+        private readonly string? conString = GetConnection.Connection();
         public async Task AddAsync(WaitList obj)
         {
-            using (NpgsqlConnection connection = new NpgsqlConnection(DbContext.conString))
+            using (NpgsqlConnection connection = new NpgsqlConnection(conString))
             {
                 connection.Open();
 
@@ -35,7 +36,7 @@ namespace Infrastructure.Persistence
 
         public async Task DeleteAsync(int id)
         {
-            using (NpgsqlConnection connection = new NpgsqlConnection(DbContext.conString))
+            using (NpgsqlConnection connection = new NpgsqlConnection(conString))
             {
                 connection.Open();
 
@@ -46,7 +47,7 @@ namespace Infrastructure.Persistence
 
         public async Task<bool> UpdateAsync(WaitList entity)
         {
-            using (NpgsqlConnection connection = new NpgsqlConnection(DbContext.conString))
+            using (NpgsqlConnection connection = new NpgsqlConnection(conString))
             {
                 connection.Open();
 
@@ -58,7 +59,7 @@ namespace Infrastructure.Persistence
         }
         public async Task<IEnumerable<WaitList>> GetAllAsync()
         {
-            using (NpgsqlConnection connection = new NpgsqlConnection(DbContext.conString))
+            using (NpgsqlConnection connection = new NpgsqlConnection(conString))
             {
                 connection.Open();
 
@@ -70,7 +71,7 @@ namespace Infrastructure.Persistence
 
         public async Task<WaitList> GetByIdAsync(int id)
         {
-            using (NpgsqlConnection connection = new NpgsqlConnection(DbContext.conString))
+            using (NpgsqlConnection connection = new NpgsqlConnection(conString))
             {
                 connection.Open();
 

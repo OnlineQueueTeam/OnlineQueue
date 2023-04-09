@@ -11,7 +11,7 @@ namespace Domain.Models
     public class Physician:Person
     {
         public int Id { get; set; }
-        public required int CategoryId { get; set; }
+        public required Category Category { get; set; }
         public float ExperienceYear { get; set; }
         public Rating Rating { get; set; }
 
