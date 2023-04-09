@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "WIL5qafHDrhzZYScqoyf98bgyf4eRh9SbUWRIiIC/fdbPe5XbSCmH5vtrwo63lYt6T0YedGZvElhSTnKgb3vXg==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\acer\\source\\repos\\OnlineQueue\\OnlineQueue.Infrastructure\\OnlineQueue.Application.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\acer\\.nuget\\packages\\dapper\\2.0.123\\dapper.2.0.123.nupkg.sha512"
+  ],
+  "logs": []
+}

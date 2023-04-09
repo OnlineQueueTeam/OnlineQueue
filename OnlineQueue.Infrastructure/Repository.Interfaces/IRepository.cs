@@ -4,19 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Infrastructure.Persistence
+namespace OnlineQueue.Infrastructure.Repository.Interfaces
 {
     public interface IRepository<T> where T : class
     {
-        public Task<IEnumerable<T>> GetAllAsync();
-
+        public Task<List<T>> GetAllAsync();
         public Task<T> GetByIdAsync(int id);
-
-        public Task<bool> AddAsync(T obj);
-        public Task AddRangeAsync(List<T> obj);
-
         public Task<bool> UpdateAsync(T entity);
-        public Task<bool>DeleteAsync(int id);
-
+        public Task<bool> DeleteByIdAsync(int id);
+        public Task<bool> InsertAsync(T entity);
     }
 }

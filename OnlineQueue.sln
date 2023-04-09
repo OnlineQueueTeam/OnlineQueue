@@ -16,9 +16,8 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infrastructure", "Infrastructure\Infrastructure.csproj", "{18B0A104-B237-4EAC-B167-ADEB42A41F81}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "OnlineQueue.Application", "OnlineQueue.Application", "{99926239-47A9-42B1-9B36-C33089394033}"
-	ProjectSection(SolutionItems) = preProject
-		myfile.txt = myfile.txt
-	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application", "Application\Application.csproj", "{5B3E4E25-6CB7-4987-BAB4-F693F6452ACC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -38,6 +37,10 @@ Global
 		{18B0A104-B237-4EAC-B167-ADEB42A41F81}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{18B0A104-B237-4EAC-B167-ADEB42A41F81}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{18B0A104-B237-4EAC-B167-ADEB42A41F81}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5B3E4E25-6CB7-4987-BAB4-F693F6452ACC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5B3E4E25-6CB7-4987-BAB4-F693F6452ACC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5B3E4E25-6CB7-4987-BAB4-F693F6452ACC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5B3E4E25-6CB7-4987-BAB4-F693F6452ACC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -46,6 +49,7 @@ Global
 		{C8DC1E84-A01A-4793-8696-C46DC9380297} = {BBF5DE11-4987-47C6-9961-3A1E8A4B32BB}
 		{63DDA6C9-DA01-4046-A3CE-C190B2D2AAE8} = {B3412902-8A37-4811-8E9F-A915EEFFCCDD}
 		{18B0A104-B237-4EAC-B167-ADEB42A41F81} = {A7ED32BF-5C6C-4010-973E-58042CD3A07B}
+		{5B3E4E25-6CB7-4987-BAB4-F693F6452ACC} = {99926239-47A9-42B1-9B36-C33089394033}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {DC26AB34-DE06-48DE-98DB-21AE87043D27}

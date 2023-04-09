@@ -1,22 +1,18 @@
 ﻿using Dapper;
 using Domain.Models;
 using Npgsql;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Infrastructure.Persistence
 {
-    public class DbCategory:IRepository<Category>
+    public class DbCategory : IRepository<Category>
     {
-        public async Task AddAsync(Category category)
+        public async Task<bool> AddAsync(Category category)
         {
             using var connection = new NpgsqlConnection(DbContext.conString);
             await connection.OpenAsync();
             string query = "INSERT INTO category (category_name) VALUES (@CategoryName)";
-            await connection.ExecuteAsync(query, category);
+            int rowsAffected = await connection.ExecuteAsync(query, category);
+            return rowsAffected > 0;
         }
         public async Task AddRangeAsync(List<Category> categories)
         {
@@ -51,15 +47,17 @@ namespace Infrastructure.Persistence
             return rowsAffected > 0;
         }
 
-        public async Task DeleteAsync(int id)
+        public async Task<bool> DeleteAsync(int id)
         {
             using var connection = new NpgsqlConnection(DbContext.conString);
             await connection.OpenAsync();
             string query = "DELETE FROM category WHERE category_id = @CategoryId";
-             await connection.ExecuteAsync(query, new { CategoryId = id });
-            
+            int rowsAffected = await connection.ExecuteAsync(query, new { CategoryId = id });
+            return rowsAffected > 0;
+           
+
         }
 
-        
+
     }
 }
