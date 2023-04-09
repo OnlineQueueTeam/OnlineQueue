@@ -9,8 +9,8 @@ namespace Domain.Models
     public class WaitList
     {
         public int Id { get; set; }
-        public required int PhysicianId { get; set; }
-        public required int PatientId { get; set; }
+        public required Physician Physician { get; set; }
+        public required Patient Patient { get; set; }
         public DateTime JoinedTime { get; set; }
 
     }

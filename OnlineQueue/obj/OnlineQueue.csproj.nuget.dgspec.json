@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\user\\Desktop\\Новая папка\\OnlineQueue\\OnlineQueue\\OnlineQueue.csproj": {}
+    "C:\\Users\\user\\Desktop\\OnlineuQueue\\OnlineQueue\\OnlineQueue.csproj": {}
   },
   "projects": {
-    "C:\\Users\\user\\Desktop\\Новая папка\\OnlineQueue\\Domain\\Domain.csproj": {
+    "C:\\Users\\user\\Desktop\\OnlineuQueue\\Domain\\Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\user\\Desktop\\Новая папка\\OnlineQueue\\Domain\\Domain.csproj",
+        "projectUniqueName": "C:\\Users\\user\\Desktop\\OnlineuQueue\\Domain\\Domain.csproj",
         "projectName": "Domain",
-        "projectPath": "C:\\Users\\user\\Desktop\\Новая папка\\OnlineQueue\\Domain\\Domain.csproj",
+        "projectPath": "C:\\Users\\user\\Desktop\\OnlineuQueue\\Domain\\Domain.csproj",
         "packagesPath": "C:\\Users\\user\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\user\\Desktop\\Новая папка\\OnlineQueue\\Domain\\obj\\",
+        "outputPath": "C:\\Users\\user\\Desktop\\OnlineuQueue\\Domain\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -70,14 +70,14 @@
         }
       }
     },
-    "C:\\Users\\user\\Desktop\\Новая папка\\OnlineQueue\\Infrastructure\\Infrastructure.csproj": {
+    "C:\\Users\\user\\Desktop\\OnlineuQueue\\Infrastructure\\Infrastructure.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\user\\Desktop\\Новая папка\\OnlineQueue\\Infrastructure\\Infrastructure.csproj",
+        "projectUniqueName": "C:\\Users\\user\\Desktop\\OnlineuQueue\\Infrastructure\\Infrastructure.csproj",
         "projectName": "Infrastructure",
-        "projectPath": "C:\\Users\\user\\Desktop\\Новая папка\\OnlineQueue\\Infrastructure\\Infrastructure.csproj",
+        "projectPath": "C:\\Users\\user\\Desktop\\OnlineuQueue\\Infrastructure\\Infrastructure.csproj",
         "packagesPath": "C:\\Users\\user\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\user\\Desktop\\Новая папка\\OnlineQueue\\Infrastructure\\obj\\",
+        "outputPath": "C:\\Users\\user\\Desktop\\OnlineuQueue\\Infrastructure\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -99,8 +99,8 @@
           "net7.0": {
             "targetAlias": "net7.0",
             "projectReferences": {
-              "C:\\Users\\user\\Desktop\\Новая папка\\OnlineQueue\\Domain\\Domain.csproj": {
-                "projectPath": "C:\\Users\\user\\Desktop\\Новая папка\\OnlineQueue\\Domain\\Domain.csproj"
+              "C:\\Users\\user\\Desktop\\OnlineuQueue\\Domain\\Domain.csproj": {
+                "projectPath": "C:\\Users\\user\\Desktop\\OnlineuQueue\\Domain\\Domain.csproj"
               }
             }
           }
@@ -118,6 +118,10 @@
             "Dapper": {
               "target": "Package",
               "version": "[2.0.123, )"
+            },
+            "Microsoft.Extensions.Configuration": {
+              "target": "Package",
+              "version": "[7.0.0, )"
             },
             "Newtonsoft.Json": {
               "target": "Package",
@@ -148,14 +152,14 @@
         }
       }
     },
-    "C:\\Users\\user\\Desktop\\Новая папка\\OnlineQueue\\OnlineQueue\\OnlineQueue.csproj": {
+    "C:\\Users\\user\\Desktop\\OnlineuQueue\\OnlineQueue\\OnlineQueue.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\user\\Desktop\\Новая папка\\OnlineQueue\\OnlineQueue\\OnlineQueue.csproj",
+        "projectUniqueName": "C:\\Users\\user\\Desktop\\OnlineuQueue\\OnlineQueue\\OnlineQueue.csproj",
         "projectName": "OnlineQueue",
-        "projectPath": "C:\\Users\\user\\Desktop\\Новая папка\\OnlineQueue\\OnlineQueue\\OnlineQueue.csproj",
+        "projectPath": "C:\\Users\\user\\Desktop\\OnlineuQueue\\OnlineQueue\\OnlineQueue.csproj",
         "packagesPath": "C:\\Users\\user\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\user\\Desktop\\Новая папка\\OnlineQueue\\OnlineQueue\\obj\\",
+        "outputPath": "C:\\Users\\user\\Desktop\\OnlineuQueue\\OnlineQueue\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -177,8 +181,8 @@
           "net7.0": {
             "targetAlias": "net7.0",
             "projectReferences": {
-              "C:\\Users\\user\\Desktop\\Новая папка\\OnlineQueue\\Infrastructure\\Infrastructure.csproj": {
-                "projectPath": "C:\\Users\\user\\Desktop\\Новая папка\\OnlineQueue\\Infrastructure\\Infrastructure.csproj"
+              "C:\\Users\\user\\Desktop\\OnlineuQueue\\Infrastructure\\Infrastructure.csproj": {
+                "projectPath": "C:\\Users\\user\\Desktop\\OnlineuQueue\\Infrastructure\\Infrastructure.csproj"
               }
             }
           }
