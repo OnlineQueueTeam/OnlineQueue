@@ -9,10 +9,11 @@ namespace Application.Handler.Interface
 {
     public interface IHospitalHandler
     {
-        public Task<List<Hospital>> GetAllCategoriesAsync();
-        public Task<Category> GetByIdCategoryAsync(int id);
-        public Task<bool> UpdateCategoryAsync(Category category);
-        public Task<bool> DeleteCategoryByIdAsync(int id);
-        public Task<bool> InsertCategoryAsync(Category category);
+        public Task<List<Hospital>> GetAllHospitalsAsync();
+        public Task<Hospital> GetByIdHospitalAsync(int id);
+        public Task<bool> UpdateHospitalAsync(Hospital hospital);
+        public Task<bool> DeleteHospitalByIdAsync(int id);
+        public Task<bool> InsertHospitalAsync(Hospital hospital);
+    
     }
 }

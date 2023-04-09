@@ -1,4 +1,5 @@
-﻿using Dapper;
+﻿using Application.Repository.Interfaces;
+using Dapper;
 using Domain.Models;
 using Infrastructure.Connection;
 using Npgsql;
@@ -10,47 +11,40 @@ using System.Threading.Tasks;
 
 namespace Infrastructure.Persistence
 {
-    public class DbServingStatement : IRepository<ServingStatement>
+    public class DbServingStatement : IServingStatementRepository
     {
         private readonly string? conString = GetConnection.Connection();
-        public async Task AddAsync(ServingStatement obj)
+        public async Task<bool> InsertAsync(ServingStatement obj)
         {
             using (NpgsqlConnection connection = new NpgsqlConnection(conString))
             {
                 connection.Open();
 
                 int res = await connection.ExecuteAsync("insert into serving(patient_id, physician_id,served_time) values (@PatientId,@PhysicianId,@ServedTime)", obj);
-
+                return res > 0;
 
             }
         }
 
-        public async Task AddRangeAsync(List<ServingStatement> obj)
-        {
-            foreach (ServingStatement serving in obj)
-            {
-                await AddAsync(serving);
-            }
-        }
-
-        public async Task DeleteAsync(int id)
+        public async Task<bool> DeleteByIdAsync(int id)
         {
             using (NpgsqlConnection connection = new NpgsqlConnection(conString))
             {
                 connection.Open();
 
                 int rowsDeleted = await connection.ExecuteAsync("delete from serving where id=@Id", new { Id = id });
+                return rowsDeleted > 0;
 
             }
         }
 
-        public async Task<IEnumerable<ServingStatement>> GetAllAsync()
+        public async Task<List<ServingStatement>> GetAllAsync()
         {
             using (NpgsqlConnection connection = new NpgsqlConnection(conString))
             {
                 connection.Open();
 
-                var list = await connection.QueryAsync<ServingStatement>("select id Id, patient_id PatientId, phisician_id PhisicianId, served_time ServedTime from serving");
+                var list = (await connection.QueryAsync<ServingStatement>("select id Id, patient_id PatientId, phisician_id PhisicianId, served_time ServedTime from serving")).ToList();
 
                 return list;
             }

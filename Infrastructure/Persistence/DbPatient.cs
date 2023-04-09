@@ -8,51 +8,40 @@ using Dapper;
 using Npgsql;
 using System.Runtime.CompilerServices;
 using Infrastructure.Connection;
+using Application.Repository.Interfaces;
 
 namespace Infrastructure.Persistence
 {
-    public class DbPatient : IRepository<Patient>
+    public class DbPatient : IPatientRepository
     {
         private readonly string? conString = GetConnection.Connection();
-        public async Task AddAsync(Patient obj)
+        public async Task<bool> InsertAsync(Patient obj)
         {
             
             NpgsqlConnection connection = new NpgsqlConnection(conString);
             connection.Open();
           
             string query = "Insert into patient(first_name, last_name, phone_number) values(@FirstName, @LastName, @PhoneNumber)";
-            await connection.ExecuteAsync(query, obj);
+           return await connection.ExecuteAsync(query, obj) > 0;
             
         }
 
-        public async Task AddRangeAsync(List<Patient> obj)
-        {
-            foreach(Patient objItem in obj)
-            {
-                await AddAsync(objItem);
-            }
-        }
-
-        public async Task DeleteAsync(int id)
+        public async Task<bool> DeleteByIdAsync(int id)
         {
             using (var connection = new NpgsqlConnection(conString))
             {
-                await connection.ExecuteAsync(
-                    "DELETE FROM patient WHERE patient_id = @PatientId",
-                    new  { PatientId = id}
-                );
+                return await connection.ExecuteAsync("DELETE FROM patient WHERE patient_id = @PatientId", new { PatientId = id }) > 0;
+                    
             }
         }
 
-        public async Task<IEnumerable<Patient>> GetAllAsync()
+        public async Task<List<Patient>> GetAllAsync()
         {
 
             using (var connection = new NpgsqlConnection(conString))
             {
                 await connection.OpenAsync();
-                var list =  await connection.QueryAsync<Patient>(
-                    "SELECT patient_id as PatientId, first_name as FirstName, last_name as LastName, phone_number as PhoneNumber from patient"
-                );
+                var list =  (await connection.QueryAsync<Patient>("SELECT patient_id as PatientId, first_name as FirstName, last_name as LastName, phone_number as PhoneNumber from patient")).ToList();
                 return list;
             }
         }
