@@ -19,7 +19,6 @@ namespace Infrastructure.Persistence
             await connection.OpenAsync();
             string query = "INSERT INTO category (category_name) VALUES (@CategoryName)";
             await connection.ExecuteAsync(query, category);
-            connection.Close();
         }
         public async Task AddRangeAsync(List<Category> categories)
         {
@@ -27,7 +26,6 @@ namespace Infrastructure.Persistence
             await connection.OpenAsync();
             string query = "INSERT INTO category (category_name) VALUES (@CategoryName)";
             await connection.ExecuteAsync(query, categories);
-            connection.Close();
         }
 
         public async Task<Category> GetByIdAsync(int categoryId)
