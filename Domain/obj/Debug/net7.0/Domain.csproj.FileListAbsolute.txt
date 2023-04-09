@@ -10,3 +10,27 @@ C:\Users\acer\source\repos\OnlineQueue\Domain\obj\Debug\net7.0\Domain.dll
 C:\Users\acer\source\repos\OnlineQueue\Domain\obj\Debug\net7.0\refint\Domain.dll
 C:\Users\acer\source\repos\OnlineQueue\Domain\obj\Debug\net7.0\Domain.pdb
 C:\Users\acer\source\repos\OnlineQueue\Domain\obj\Debug\net7.0\ref\Domain.dll
+C:\Users\user\Desktop\OnlineuQueue\Domain\bin\Debug\net7.0\Domain.deps.json
+C:\Users\user\Desktop\OnlineuQueue\Domain\bin\Debug\net7.0\Domain.dll
+C:\Users\user\Desktop\OnlineuQueue\Domain\bin\Debug\net7.0\Domain.pdb
+C:\Users\user\Desktop\OnlineuQueue\Domain\obj\Debug\net7.0\Domain.csproj.AssemblyReference.cache
+C:\Users\user\Desktop\OnlineuQueue\Domain\obj\Debug\net7.0\Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\user\Desktop\OnlineuQueue\Domain\obj\Debug\net7.0\Domain.AssemblyInfoInputs.cache
+C:\Users\user\Desktop\OnlineuQueue\Domain\obj\Debug\net7.0\Domain.AssemblyInfo.cs
+C:\Users\user\Desktop\OnlineuQueue\Domain\obj\Debug\net7.0\Domain.csproj.CoreCompileInputs.cache
+C:\Users\user\Desktop\OnlineuQueue\Domain\obj\Debug\net7.0\Domain.dll
+C:\Users\user\Desktop\OnlineuQueue\Domain\obj\Debug\net7.0\refint\Domain.dll
+C:\Users\user\Desktop\OnlineuQueue\Domain\obj\Debug\net7.0\Domain.pdb
+C:\Users\user\Desktop\OnlineuQueue\Domain\obj\Debug\net7.0\ref\Domain.dll
+C:\Users\user\Desktop\Новая папка\OnlineQueue\Domain\bin\Debug\net7.0\Domain.deps.json
+C:\Users\user\Desktop\Новая папка\OnlineQueue\Domain\bin\Debug\net7.0\Domain.dll
+C:\Users\user\Desktop\Новая папка\OnlineQueue\Domain\bin\Debug\net7.0\Domain.pdb
+C:\Users\user\Desktop\Новая папка\OnlineQueue\Domain\obj\Debug\net7.0\Domain.csproj.AssemblyReference.cache
+C:\Users\user\Desktop\Новая папка\OnlineQueue\Domain\obj\Debug\net7.0\Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\user\Desktop\Новая папка\OnlineQueue\Domain\obj\Debug\net7.0\Domain.AssemblyInfoInputs.cache
+C:\Users\user\Desktop\Новая папка\OnlineQueue\Domain\obj\Debug\net7.0\Domain.AssemblyInfo.cs
+C:\Users\user\Desktop\Новая папка\OnlineQueue\Domain\obj\Debug\net7.0\Domain.csproj.CoreCompileInputs.cache
+C:\Users\user\Desktop\Новая папка\OnlineQueue\Domain\obj\Debug\net7.0\Domain.dll
+C:\Users\user\Desktop\Новая папка\OnlineQueue\Domain\obj\Debug\net7.0\refint\Domain.dll
+C:\Users\user\Desktop\Новая папка\OnlineQueue\Domain\obj\Debug\net7.0\Domain.pdb
+C:\Users\user\Desktop\Новая папка\OnlineQueue\Domain\obj\Debug\net7.0\ref\Domain.dll
