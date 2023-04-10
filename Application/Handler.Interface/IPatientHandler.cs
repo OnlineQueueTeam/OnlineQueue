@@ -11,8 +11,8 @@ namespace Application.Handler.Interface
     {
         public Task<List<Patient>> GetAllPatientsAsync();
         public Task<Patient> GetByIdPatientAsync(int id);
-        public Task<bool> UpdatePatientAsync(Category category);
+        public Task<bool> UpdatePatientAsync(Patient patient);
         public Task<bool> DeletePatientByIdAsync(int id);
-        public Task<bool> InsertPatientAsync(Category category);
+        public Task<bool> InsertPatientAsync(Patient patient);
     }
 }

@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Application.Repository.Interfaces
+namespace Application.Handler.Interface
 {
-    internal class IHospitalPhysician
+    internal class IServingStatement
     {
     }
 }

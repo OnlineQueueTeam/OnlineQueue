@@ -10,9 +10,9 @@ namespace Application.Handler.Interface
     public interface IPhysicianHandler
     {
         public Task<List<Physician>> GetAllPhysiciansAsync();
-        public Task<Category> GetByIdPhysicianAsync(int id);
-        public Task<bool> UpdatePhyssicianAsync(Category category);
+        public Task<Physician> GetByIdPhysicianAsync(int id);
+        public Task<bool> UpdatePhysicianAsync(Physician physician);
         public Task<bool> DeletePhysicianByIdAsync(int id);
-        public Task<bool> InsertPhysicianAsync(Category category);
+        public Task<bool> InsertPhysicianAsync(Physician physician);
     }
 }

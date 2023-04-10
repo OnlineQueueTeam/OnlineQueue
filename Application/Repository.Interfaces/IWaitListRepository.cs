@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Application.Repository.Interfaces
 {
-    internal class IHospitalPhysician
+    internal class IWaitListRepository
     {
     }
 }
