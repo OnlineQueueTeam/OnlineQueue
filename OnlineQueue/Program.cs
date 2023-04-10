@@ -19,11 +19,35 @@ class Program
         //dbContext.CreateDb();
         //dbContext.InitializeTables();
         //TestPatient();
-        TestCategory();
+        //TestCategory();
+       // TestHospital();
         Console.ReadKey();
 
 
 
+    }
+
+    //private static void TestHospital()
+    //{
+    //    IHospitalRepository repository = new DbHospital();
+    //    IHospitalHandler hospitalHandler = new HospitalHandler(repository);
+    //    hospitalHandler
+    //}
+
+    private static async void TestPhycisian()
+    {
+        //IPhysicianRepository repository = new DbPhysician();
+        //IPhysicianHandler physicianHandler = new PhysicianHandler(repository);
+        //await physicianHandler.InsertPhysicianAsync(new()
+        //{
+        //    Category = new()
+        //    {
+        //        CategoryId= 1,
+        //    },
+        //    FirstName = "Feruz",
+        //    Hospital = 
+            
+        //});
     }
 
     private static async void TestCategory()
