@@ -1,10 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "r4LqsX66kS05woalb85f9fVTJx6JSauDFwVtw+V13BvtAwjSMYDbd8sxJzTqRyS4La92TiY9/ZFhy2giq00S6Q==",
+  "dgSpecHash": "ePW6kAyjFPMccueWmY65rV+F8NDq8FHiIZUiYkmCbzZAiYDRHGx5+VzMZ4EPDehbb3GW3W2mMz9ItpHuHsMRGA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\acer\\source\\repos\\OnlineQueue\\Application\\Application.csproj",
+  "projectFilePath": "C:\\Users\\user\\Desktop\\OnlineuQueue\\Application\\Application.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\acer\\.nuget\\packages\\dapper\\2.0.123\\dapper.2.0.123.nupkg.sha512"
+    "C:\\Users\\user\\.nuget\\packages\\dapper\\2.0.123\\dapper.2.0.123.nupkg.sha512"
   ],
   "logs": []
 }

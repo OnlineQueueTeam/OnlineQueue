@@ -12,6 +12,7 @@ namespace Domain.Models
     {
         public int Id { get; set; }
         public required Category Category { get; set; }
+        public required Hospital Hospital { get; set; }
         public float ExperienceYear { get; set; }
         public Rating Rating { get; set; }
 

@@ -76,3 +76,5 @@ C:\Users\user\Desktop\Новая папка\OnlineQueue\OnlineQueue\obj\Debug\ne
 C:\Users\user\Desktop\Новая папка\OnlineQueue\OnlineQueue\obj\Debug\net7.0\OnlineQueue.pdb
 C:\Users\user\Desktop\Новая папка\OnlineQueue\OnlineQueue\obj\Debug\net7.0\OnlineQueue.genruntimeconfig.cache
 C:\Users\user\Desktop\Новая папка\OnlineQueue\OnlineQueue\obj\Debug\net7.0\ref\OnlineQueue.dll
+C:\Users\user\Desktop\OnlineuQueue\OnlineQueue\bin\Debug\net7.0\Application.dll
+C:\Users\user\Desktop\OnlineuQueue\OnlineQueue\bin\Debug\net7.0\Application.pdb

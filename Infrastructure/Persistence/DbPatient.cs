@@ -15,33 +15,49 @@ namespace Infrastructure.Persistence
     public class DbPatient : IPatientRepository
     {
         private readonly string? conString = GetConnection.Connection();
-        public async Task<bool> InsertAsync(Patient obj)
+        public async Task<bool> AddAsync(Patient obj)
         {
             
             NpgsqlConnection connection = new NpgsqlConnection(conString);
             connection.Open();
           
             string query = "Insert into patient(first_name, last_name, phone_number) values(@FirstName, @LastName, @PhoneNumber)";
-           return await connection.ExecuteAsync(query, obj) > 0;
+           int rowsAffected= await connection.ExecuteAsync(query, obj);
+            return rowsAffected > 0;
             
         }
 
-        public async Task<bool> DeleteByIdAsync(int id)
+        public async Task AddRangeAsync(List<Patient> obj)
         {
-            using (var connection = new NpgsqlConnection(conString))
+            foreach(Patient objItem in obj)
             {
-                return await connection.ExecuteAsync("DELETE FROM patient WHERE patient_id = @PatientId", new { PatientId = id }) > 0;
-                    
+                await AddAsync(objItem);
             }
         }
 
-        public async Task<List<Patient>> GetAllAsync()
+        public async Task<bool> DeleteAsync(int id)
+        {
+            int rowsAffected = 0;
+            using (var connection = new NpgsqlConnection(conString))
+            {
+                 rowsAffected=await connection.ExecuteAsync(
+                    "DELETE FROM patient WHERE patient_id = @PatientId",
+                    new  { PatientId = id}
+                );
+                
+            }
+            return rowsAffected > 0;
+        }
+
+        public async Task<IEnumerable<Patient>> GetAllAsync()
         {
 
             using (var connection = new NpgsqlConnection(conString))
             {
                 await connection.OpenAsync();
-                var list =  (await connection.QueryAsync<Patient>("SELECT patient_id as PatientId, first_name as FirstName, last_name as LastName, phone_number as PhoneNumber from patient")).ToList();
+                var list =  await connection.QueryAsync<Patient>(
+                    "SELECT patient_id as PatientId, first_name as FirstName, last_name as LastName, phone_number as PhoneNumber from patient"
+                );
                 return list;
             }
         }
