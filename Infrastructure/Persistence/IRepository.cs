@@ -12,11 +12,11 @@ namespace Infrastructure.Persistence
 
         public Task<T> GetByIdAsync(int id);
 
-        public Task AddAsync(T obj);
+        public Task<bool> AddAsync(T obj);
         public Task AddRangeAsync(List<T> obj);
 
         public Task<bool> UpdateAsync(T entity);
-        public Task DeleteAsync(int id);
+        public Task<bool>DeleteAsync(int id);
 
     }
 }
