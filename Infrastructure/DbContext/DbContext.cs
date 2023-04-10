@@ -15,7 +15,18 @@ namespace Infrastructure.Persistence
             using NpgsqlConnection connection = new(conString);
             connection.Open();
 
-            string query = @"  create table if not exists patient (
+            string query = @"  
+                                  DO $$
+                                    BEGIN
+                                      IF NOT EXISTS (
+                                        SELECT 1 FROM pg_type WHERE typname = 'rating'
+                                      ) THEN
+                                        CREATE TYPE rating AS ENUM ('Competent','Professional','Compassionate','Caring','Knowledgeable','Skilled');
+                                      END IF;
+                                    END$$;
+
+
+                     create table if not exists patient (
                     patient_id serial primary key,
                     first_name varchar(50),
                     last_name varchar(50),
@@ -38,7 +49,7 @@ namespace Infrastructure.Persistence
                   last_name varchar(50),
                   phone_number varchar(50),
                   experience_year float,
-                  rating int
+                  rating rating 
                   );
                     create table if not exists hospital_physician (
                     id serial primary key,

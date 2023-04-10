@@ -1,4 +1,5 @@
-﻿using Dapper;
+﻿using Application.Repository.Interfaces;
+using Dapper;
 using Domain.Models;
 using Infrastructure.Connection;
 using Npgsql;
@@ -10,19 +11,19 @@ using System.Threading.Tasks;
 
 namespace Infrastructure.Persistence
 {
-    public class DbWaitListRepo : IRepository<WaitList>
+    public class DbWaitListRepo : IWaitlistRepository
     {
 
         private readonly string? conString = GetConnection.Connection();
-        public async Task AddAsync(WaitList obj)
+        public async Task<bool> AddAsync(WaitList obj)
         {
             using (NpgsqlConnection connection = new NpgsqlConnection(conString))
             {
                 connection.Open();
 
-                int res = await connection.ExecuteAsync("insert into wait_list(patient_id, physician_id) values (@PatientId,@PhysicianId)", obj);
+                int rowsAffected = await connection.ExecuteAsync("insert into wait_list(patient_id, physician_id) values (@PatientId,@PhysicianId)", new {PatientId=obj.Patient.PatientId,PhysicianId=obj.Physician.Id});
 
-
+                return rowsAffected > 0;
             }
         }
 
@@ -34,15 +35,17 @@ namespace Infrastructure.Persistence
             }
         }
 
-        public async Task DeleteAsync(int id)
+        public async Task<bool> DeleteAsync(int id)
         {
+            int rowsAffected = 0;
             using (NpgsqlConnection connection = new NpgsqlConnection(conString))
             {
                 connection.Open();
 
-                await connection.ExecuteAsync("delete from wait_list where id=@Id", new { Id = id });
+                 rowsAffected=await connection.ExecuteAsync("delete from wait_list where id=@Id", new { Id = id });
 
             }
+            return rowsAffected > 0;
         }
 
         public async Task<bool> UpdateAsync(WaitList entity)
@@ -51,7 +54,13 @@ namespace Infrastructure.Persistence
             {
                 connection.Open();
 
-                int res = await connection.ExecuteAsync("update wait_list set patient_id=@PatientId,physician_id=@PhisicianId where id=@Id", entity);
+                int res = await connection.ExecuteAsync("update wait_list set patient_id=@PatientId,physician_id=@PhysicianId where id=@Id", new
+                {
+                    Id=entity.Id,
+                    PatientId=entity.Patient.PatientId,
+                    PhysicianId=entity.Physician.Id
+
+                });
                 if (res > 0)
                     return true;
                 return false;
@@ -61,9 +70,25 @@ namespace Infrastructure.Persistence
         {
             using (NpgsqlConnection connection = new NpgsqlConnection(conString))
             {
+                List<WaitList> list = new List<WaitList>();
                 connection.Open();
 
-                var list = await connection.QueryAsync<WaitList>("select id Id, patient_id PatientId, physician_id PhysicianId, joined_time JoinedTime from wait_list");
+                NpgsqlCommand cmd = new NpgsqlCommand();
+                cmd.CommandText = "select * from wait_list";
+                cmd.Connection=connection;
+
+                NpgsqlDataReader reader = cmd.ExecuteReader();
+
+                while(reader.Read())
+                {
+                    list.Add(new WaitList()
+                    {
+                        Id = reader.GetInt32(0),
+                        Physician=await new DbPhysician().GetByIdAsync(reader.GetInt32(1)),
+                        Patient=await new DbPatient().GetByIdAsync(reader.GetInt32(2)),
+                        JoinedTime=reader.GetDateTime(3)
+                    }) ;
+                }
 
                 return list;
             }
@@ -75,7 +100,7 @@ namespace Infrastructure.Persistence
             {
                 connection.Open();
 
-                var result = await connection.QueryFirstAsync<WaitList>("select id Id, patient_id PatientId, physician_id PhysicianId, joined_time JoinedTime from wait_list where id=@Id", new { Id = id });
+                var result = await connection.QueryFirstAsync<WaitList>("select * from wait_list where id=@Id", new { Id = id });
                 return result;
             }
         }

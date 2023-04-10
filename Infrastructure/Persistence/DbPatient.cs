@@ -8,20 +8,22 @@ using Dapper;
 using Npgsql;
 using System.Runtime.CompilerServices;
 using Infrastructure.Connection;
+using Application.Repository.Interfaces;
 
 namespace Infrastructure.Persistence
 {
-    public class DbPatient : IRepository<Patient>
+    public class DbPatient : IPatientRepository
     {
         private readonly string? conString = GetConnection.Connection();
-        public async Task AddAsync(Patient obj)
+        public async Task<bool> AddAsync(Patient obj)
         {
             
             NpgsqlConnection connection = new NpgsqlConnection(conString);
             connection.Open();
           
             string query = "Insert into patient(first_name, last_name, phone_number) values(@FirstName, @LastName, @PhoneNumber)";
-            await connection.ExecuteAsync(query, obj);
+           int rowsAffected= await connection.ExecuteAsync(query, obj);
+            return rowsAffected > 0;
             
         }
 
@@ -33,15 +35,18 @@ namespace Infrastructure.Persistence
             }
         }
 
-        public async Task DeleteAsync(int id)
+        public async Task<bool> DeleteAsync(int id)
         {
+            int rowsAffected = 0;
             using (var connection = new NpgsqlConnection(conString))
             {
-                await connection.ExecuteAsync(
+                 rowsAffected=await connection.ExecuteAsync(
                     "DELETE FROM patient WHERE patient_id = @PatientId",
                     new  { PatientId = id}
                 );
+                
             }
+            return rowsAffected > 0;
         }
 
         public async Task<IEnumerable<Patient>> GetAllAsync()
