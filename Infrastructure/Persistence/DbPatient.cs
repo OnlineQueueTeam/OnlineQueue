@@ -15,7 +15,7 @@ namespace Infrastructure.Persistence
     public class DbPatient : IPatientRepository
     {
         private readonly string? conString = GetConnection.Connection();
-        public async Task<bool> AddAsync(Patient obj)
+        public async Task<bool> InsertAsync(Patient obj)
         {
             
             NpgsqlConnection connection = new NpgsqlConnection(conString);
@@ -27,15 +27,15 @@ namespace Infrastructure.Persistence
             
         }
 
-        public async Task AddRangeAsync(List<Patient> obj)
+        public async Task InsertRangeAsync(List<Patient> obj)
         {
             foreach(Patient objItem in obj)
             {
-                await AddAsync(objItem);
+                await InsertAsync(objItem);
             }
         }
 
-        public async Task<bool> DeleteAsync(int id)
+        public async Task<bool> DeleteByIdAsync(int id)
         {
             int rowsAffected = 0;
             using (var connection = new NpgsqlConnection(conString))
@@ -49,15 +49,15 @@ namespace Infrastructure.Persistence
             return rowsAffected > 0;
         }
 
-        public async Task<IEnumerable<Patient>> GetAllAsync()
+        public async Task<List<Patient>> GetAllAsync()
         {
 
             using (var connection = new NpgsqlConnection(conString))
             {
                 await connection.OpenAsync();
-                var list =  await connection.QueryAsync<Patient>(
+                var list =  (await connection.QueryAsync<Patient>(
                     "SELECT patient_id as PatientId, first_name as FirstName, last_name as LastName, phone_number as PhoneNumber from patient"
-                );
+                )).ToList();
                 return list;
             }
         }

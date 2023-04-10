@@ -2,6 +2,7 @@
 using Dapper;
 using Domain.Models;
 using Npgsql;
+using NpgsqlTypes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,7 +14,7 @@ namespace Infrastructure.Persistence
     public class DbHospital : IHospitalRepository
     {
 
-        public async Task<bool> AddAsync(Hospital obj)
+        public async Task<bool> InsertAsync(Hospital obj)
         {
             using var connection = new NpgsqlConnection(DbContext.conString);
             await connection.OpenAsync();
@@ -22,29 +23,29 @@ namespace Infrastructure.Persistence
             return rowsAffected > 0;
         }
 
-        public async Task AddRangeAsync(List<Hospital> obj)
+        public async Task InsertRangeAsync(List<Hospital> obj)
         {
             foreach (Hospital item in obj)
             {
-              await  AddAsync(item);
+              await  InsertAsync(item);
             }
         }
 
-        public async Task<bool> DeleteAsync(int id) 
+        public async Task<bool> DeleteByIdAsync(int id) 
         {
             using var connection = new NpgsqlConnection(DbContext.conString);
             await connection.OpenAsync();
             string query = "delete from hospital where hospital_id=@Id";
-            int a=await connection.ExecuteAsync(query, new { Id=id});
-            return a > 0;
+            int rowseffected =await connection.ExecuteAsync(query, new { Id=id});
+            return rowseffected > 0;
         }
 
-        public async Task<IEnumerable<Hospital>> GetAllAsync()
+        public async Task<List<Hospital>> GetAllAsync()
         {
             using var connection = new NpgsqlConnection(DbContext.conString);
             await connection.OpenAsync();
             string query = "select hospital_id as Id, name as Name, address as Address  from hospital";
-            return  await connection.QueryAsync<Hospital>(query);
+            return  (await connection.QueryAsync<Hospital>(query)).ToList();
         }
 
         public async Task<Hospital> GetByIdAsync(int id)

@@ -2,14 +2,12 @@
 using Dapper;
 using Domain.Models;
 using Npgsql;
-using System.Diagnostics.CodeAnalysis;
-using System.Xml;
 
 namespace Infrastructure.Persistence
 {
     public class DbHospitalPhysician : IHospitalPhysicianRepository
     {
-        public async Task<bool> AddAsync(HospitalPhisician obj)
+        public async Task<bool> InsertAsync(HospitalPhysician obj)
         {
             using var connection = new NpgsqlConnection(DbContext.conString);
             await connection.OpenAsync();
@@ -21,17 +19,17 @@ namespace Infrastructure.Persistence
 
        
 
-        public async Task AddRangeAsync(List<HospitalPhisician> obj)
+        public async Task InsertRangeAsync(List<HospitalPhysician> obj)
         {
-            foreach (HospitalPhisician item in obj)
+            foreach (HospitalPhysician item in obj)
             {
-                await AddAsync(item);
+                await InsertAsync(item);
             }
         }
 
       
 
-        public async Task<bool> DeleteAsync(int id)
+        public async Task<bool> DeleteByIdAsync(int id)
         {
             using var connection = new NpgsqlConnection(DbContext.conString);
             await connection.OpenAsync();
@@ -40,9 +38,9 @@ namespace Infrastructure.Persistence
             return res > 0;
         }
 
-        public async Task<IEnumerable<HospitalPhisician>> GetAllAsync()
+        public async Task<List<HospitalPhysician>> GetAllAsync()
         {
-            List<HospitalPhisician> list = new();
+            List<HospitalPhysician> list = new();
             using var connection = new NpgsqlConnection(DbContext.conString);
             await connection.OpenAsync();
             
@@ -52,7 +50,7 @@ namespace Infrastructure.Persistence
 
             while (reader.Read())
             {
-                list.Add(new HospitalPhisician() {
+                list.Add(new HospitalPhysician() {
                     Id = reader.GetInt32(0),
                     Hospital=await new DbHospital().GetByIdAsync(reader.GetInt32(1)),
                     Physician=await new DbPhysician().GetByIdAsync(reader.GetInt32(2))
@@ -62,7 +60,7 @@ namespace Infrastructure.Persistence
             return list;
         }
 
-        public async Task<HospitalPhisician> GetByIdAsync(int id)
+        public async Task<HospitalPhysician> GetByIdAsync(int id)
         {
             using var connection = new NpgsqlConnection(DbContext.conString);
             await connection.OpenAsync();
@@ -70,7 +68,7 @@ namespace Infrastructure.Persistence
             return await connection.QueryFirstOrDefault(query, new {Id=id});
         }
 
-        public async Task<bool> UpdateAsync(HospitalPhisician entity)
+        public async Task<bool> UpdateAsync(HospitalPhysician entity)
         {
             using var connection = new NpgsqlConnection(DbContext.conString);
             await connection.OpenAsync();

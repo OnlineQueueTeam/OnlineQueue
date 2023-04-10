@@ -14,7 +14,7 @@ namespace Infrastructure.Persistence
     public class DbServingStatement : IServingStatementRepository
     {
         private readonly string? conString = GetConnection.Connection();
-        public async Task<bool> AddAsync(ServingStatement obj)
+        public async Task<bool> InsertAsync(ServingStatement obj)
         {
             using (NpgsqlConnection connection = new NpgsqlConnection(conString))
             {
@@ -26,15 +26,15 @@ namespace Infrastructure.Persistence
             }
         }
 
-        public async Task AddRangeAsync(List<ServingStatement> obj)
+        public async Task InsertRangeAsync(List<ServingStatement> obj)
         {
             foreach (ServingStatement serving in obj)
             {
-                await AddAsync(serving);
+                await InsertAsync(serving);
             }
         }
 
-        public async Task<bool> DeleteAsync(int id)
+        public async Task<bool> DeleteByIdAsync(int id)
         {
             using (NpgsqlConnection connection = new NpgsqlConnection(conString))
             {
@@ -45,7 +45,7 @@ namespace Infrastructure.Persistence
             }
         }
 
-        public async Task<IEnumerable<ServingStatement>> GetAllAsync()
+        public async Task<List<ServingStatement>> GetAllAsync()
         {
             List<ServingStatement> list = new List<ServingStatement>();
 

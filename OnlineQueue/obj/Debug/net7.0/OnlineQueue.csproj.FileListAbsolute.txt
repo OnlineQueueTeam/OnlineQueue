@@ -78,3 +78,8 @@ C:\Users\user\Desktop\Новая папка\OnlineQueue\OnlineQueue\obj\Debug\ne
 C:\Users\user\Desktop\Новая папка\OnlineQueue\OnlineQueue\obj\Debug\net7.0\ref\OnlineQueue.dll
 C:\Users\user\Desktop\OnlineuQueue\OnlineQueue\bin\Debug\net7.0\Application.dll
 C:\Users\user\Desktop\OnlineuQueue\OnlineQueue\bin\Debug\net7.0\Application.pdb
+C:\Users\acer\source\repos\OnlineQueue\OnlineQueue\bin\Debug\net7.0\Microsoft.Extensions.Configuration.dll
+C:\Users\acer\source\repos\OnlineQueue\OnlineQueue\bin\Debug\net7.0\Microsoft.Extensions.Configuration.Abstractions.dll
+C:\Users\acer\source\repos\OnlineQueue\OnlineQueue\bin\Debug\net7.0\Microsoft.Extensions.Primitives.dll
+C:\Users\acer\source\repos\OnlineQueue\OnlineQueue\bin\Debug\net7.0\Application.dll
+C:\Users\acer\source\repos\OnlineQueue\OnlineQueue\bin\Debug\net7.0\Application.pdb

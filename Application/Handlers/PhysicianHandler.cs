@@ -11,20 +11,29 @@ namespace Application.Handlers
 {
     public class PhysicianHandler : IPhysicianHandler
     {
-        private readonly IPhysicianHandler _categoryRepository;
-        public PhysicianHandler(IPhysicianHandler categoryRepository)
+        private readonly IPhysicianRepository _categoryRepository;
+        public PhysicianHandler(IPhysicianRepository categoryRepository)
         {
             this._categoryRepository = categoryRepository;
         }
         public async Task<bool> DeletePhysicianByIdAsync(int id)
         {
-            try
+            if (await _categoryRepository.DeleteByIdAsync(id))
             {
-                return await _categoryRepository.DeletePhysicianByIdAsync(id);
+                Console.WriteLine("Successfully deleted!");
+                return true;
             }
-            catch (Exception)
+            else
             {
+                try
+                {
 
+                    Console.WriteLine("Operation failed");
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
                 return false;
             }
         }
@@ -33,7 +42,7 @@ namespace Application.Handlers
         {
             try
             {
-                return await _categoryRepository.GetAllPhysiciansAsync();
+                return await _categoryRepository.GetAllAsync();
             }
             catch (Exception)
             {
@@ -45,7 +54,7 @@ namespace Application.Handlers
         {
             try
             {
-                return await _categoryRepository.GetByIdPhysicianAsync(id);
+                return await _categoryRepository.GetByIdAsync(id);
             }
             catch (Exception)
             {
@@ -55,12 +64,21 @@ namespace Application.Handlers
 
         public async Task<bool> InsertPhysicianAsync(Physician physician)
         {
-            try
+            if (await _categoryRepository.InsertAsync(physician))
             {
-                return await _categoryRepository.InsertPhysicianAsync(physician);
+                Console.WriteLine("Successfully added");
+                return true;
             }
-            catch (Exception)
+            else
             {
+                try
+                {
+                    Console.WriteLine("Operation failed");
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Error: " + ex.Message);
+                }
                 return false;
             }
         }
@@ -68,12 +86,21 @@ namespace Application.Handlers
 
         public async Task<bool> UpdatePhysicianAsync(Physician physician)
         {
-            try
+            if (await _categoryRepository.UpdateAsync(physician))
             {
-                return await _categoryRepository.UpdatePhysicianAsync(physician);
+                Console.WriteLine("Successfully Updated!");
+                return true;
             }
-            catch (Exception)
+            else
             {
+                try
+                {
+                    Console.WriteLine("Operation failed!");
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Error: " + ex.Message);
+                }
                 return false;
             }
         }

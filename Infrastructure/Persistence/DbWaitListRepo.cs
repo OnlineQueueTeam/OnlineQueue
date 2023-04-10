@@ -11,11 +11,11 @@ using System.Threading.Tasks;
 
 namespace Infrastructure.Persistence
 {
-    public class DbWaitListRepo : IWaitlistRepository
+    public class DbWaitListRepo : IWaitListRepository
     {
 
         private readonly string? conString = GetConnection.Connection();
-        public async Task<bool> AddAsync(WaitList obj)
+        public async Task<bool> InsertAsync(WaitList obj)
         {
             using (NpgsqlConnection connection = new NpgsqlConnection(conString))
             {
@@ -27,15 +27,15 @@ namespace Infrastructure.Persistence
             }
         }
 
-        public async Task AddRangeAsync(List<WaitList> obj)
+        public async Task InsertRangeAsync(List<WaitList> obj)
         {
             foreach (WaitList waitlist in obj)
             {
-                await AddAsync(waitlist);
+                await InsertAsync(waitlist);
             }
         }
 
-        public async Task<bool> DeleteAsync(int id)
+        public async Task<bool> DeleteByIdAsync(int id)
         {
             int rowsAffected = 0;
             using (NpgsqlConnection connection = new NpgsqlConnection(conString))
@@ -66,7 +66,7 @@ namespace Infrastructure.Persistence
                 return false;
             }
         }
-        public async Task<IEnumerable<WaitList>> GetAllAsync()
+        public async Task<List<WaitList>> GetAllAsync()
         {
             using (NpgsqlConnection connection = new NpgsqlConnection(conString))
             {

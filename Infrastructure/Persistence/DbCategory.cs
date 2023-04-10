@@ -1,4 +1,5 @@
-﻿using Dapper;
+﻿using Application.Repository.Interfaces;
+using Dapper;
 using Domain.Models;
 using Infrastructure.Connection;
 using Npgsql;
@@ -10,17 +11,17 @@ using System.Threading.Tasks;
 
 namespace Infrastructure.Persistence
 {
-    public class DbCategory:IRepository<Category>
+    public class DbCategory:ICategoryRepository
     {
         private readonly string? conString = GetConnection.Connection();
-        public async Task AddAsync(Category category)
+        public async Task<bool> InsertAsync(Category category)
         {
             using var connection = new NpgsqlConnection(conString);
             await connection.OpenAsync();
             string query = "INSERT INTO category (category_name) VALUES (@CategoryName)";
-            await connection.ExecuteAsync(query, category);
+           return await connection.ExecuteAsync(query, category) > 0;
         }
-        public async Task AddRangeAsync(List<Category> categories)
+        public async Task InsertRangeAsync(List<Category> categories)
         {
             using var connection = new NpgsqlConnection(conString);
             await connection.OpenAsync();
@@ -36,12 +37,12 @@ namespace Infrastructure.Persistence
             return await connection.QueryFirstOrDefaultAsync<Category>(query, new { CategoryId = categoryId });
         }
 
-        public async Task<IEnumerable<Category>> GetAllAsync()
+        public async Task<List<Category>> GetAllAsync()
         {
             using var connection = new NpgsqlConnection(conString);
             await connection.OpenAsync();
             string query = "SELECT category_id CategoryId, category_name CategoryName FROM category";
-            return await connection.QueryAsync<Category>(query);
+            return (await connection.QueryAsync<Category>(query)).ToList();
         }
 
         public async Task<bool> UpdateAsync(Category category)
@@ -53,15 +54,15 @@ namespace Infrastructure.Persistence
             return rowsAffected > 0;
         }
 
-        public async Task DeleteAsync(int id)
+        public async Task<bool> DeleteByIdAsync(int id)
         {
             using var connection = new NpgsqlConnection(conString);
             await connection.OpenAsync();
             string query = "DELETE FROM category WHERE category_id = @CategoryId";
-             await connection.ExecuteAsync(query, new { CategoryId = id });
+           return  await connection.ExecuteAsync(query, new { CategoryId = id }) > 0;
             
         }
 
-        
+
     }
 }

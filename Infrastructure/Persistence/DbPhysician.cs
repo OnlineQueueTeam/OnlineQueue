@@ -10,7 +10,7 @@ namespace Infrastructure.Persistence
     public class DbPhysician : IPhysicianRepository
     {
         private readonly string? conString = GetConnection.Connection();
-        public async Task<bool> AddAsync(Physician obj)
+        public async Task<bool> InsertAsync(Physician obj)
         {
             using NpgsqlConnection connection = new(conString);
             connection.Open();
@@ -31,15 +31,15 @@ namespace Infrastructure.Persistence
 
 
 
-        public async Task AddRangeAsync(List<Physician> obj)
+        public async Task InsertRangeAsync(List<Physician> obj)
         {
             foreach (Physician Physician in obj)
             {
-                await AddAsync(Physician);
+                await InsertAsync(Physician);
             }
         }
 
-        public async Task<bool> DeleteAsync(int id)
+        public async Task<bool> DeleteByIdAsync(int id)
         {
             using NpgsqlConnection connection = new(conString);
             connection.Open();
@@ -48,7 +48,7 @@ namespace Infrastructure.Persistence
             return rowsAffected > 0;
         }
 
-        public async Task<IEnumerable<Physician>> GetAllAsync()
+        public async Task<List<Physician>> GetAllAsync()
         {
             List<Physician> result = new();
             using NpgsqlConnection connection = new NpgsqlConnection(conString);

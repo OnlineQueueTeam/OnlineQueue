@@ -1,11 +1,6 @@
 ﻿using Application.Handler.Interface;
 using Application.Repository.Interfaces;
 using Domain.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Application.Handlers
 {
@@ -20,15 +15,26 @@ namespace Application.Handlers
 
         public async Task<bool> DeleteCategoryByIdAsync(int id)
         {
-            try
-            {
-                return await _categoryRepository.DeleteByIdAsync(id);
-            }
-            catch (Exception)
-            {
 
+            if (await _categoryRepository.DeleteByIdAsync(id))
+            {
+                Console.WriteLine("Successfully Deleted!");
+                return true;
+            }
+            else
+            {
+                try
+                {
+                    Console.WriteLine("Operation failed");
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+
+                }
                 return false;
             }
+
         }
 
         public async Task<List<Category>> GetAllCategoriesAsync()
@@ -57,25 +63,45 @@ namespace Application.Handlers
 
         public async Task<bool> InsertCategoryAsync(Category category)
         {
-            try
+
+            if (await _categoryRepository.InsertAsync(category))
             {
-                return await _categoryRepository.InsertAsync(category);
+                Console.WriteLine("Succesfully added");
+                return true;
             }
-            catch (Exception)
+            else
             {
+                try
+                {
+                    Console.WriteLine("Operation failed");
+                }
+                catch(Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
                 return false;
             }
+
         }
 
 
         public async Task<bool> UpdateCategoryAsync(Category category)
         {
-            try
+            if (await _categoryRepository.UpdateAsync(category))
             {
-                return await _categoryRepository.UpdateAsync(category);
+                Console.WriteLine("Succesfully updated!");
+                return true;
             }
-            catch (Exception)
+            else
             {
+                try
+                {
+                    Console.WriteLine("Operation failed");
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
                 return false;
             }
         }

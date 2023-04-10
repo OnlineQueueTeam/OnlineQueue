@@ -18,13 +18,21 @@ namespace Application.Handlers
         }
         public async Task<bool> DeleteHospitalByIdAsync(int id)
         {
-            try
+            if (await _categoryRepository.DeleteByIdAsync(id))
             {
-                return await _categoryRepository.DeleteByIdAsync(id);
+                Console.WriteLine("Successfully deleted!");
+                return true;
             }
-            catch (Exception)
+            else
             {
-
+                try
+                {
+                    Console.WriteLine("Operation failed");
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Error: " + ex.Message);
+                }
                 return false;
             }
         }
@@ -55,24 +63,42 @@ namespace Application.Handlers
 
         public async Task<bool> InsertHospitalAsync(Hospital hospital)
         {
-            try
+            if (await _categoryRepository.InsertAsync(hospital))
             {
-                return await _categoryRepository.InsertAsync(hospital);
+                Console.WriteLine("Successfully added");
+                return true;
             }
-            catch (Exception)
+            else
             {
+                try
+                {
+                    Console.WriteLine("Operation failed");
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Error: " + ex.Message);
+                }
                 return false;
             }
         }
 
         public async Task<bool> UpdateHospitalAsync(Hospital hospital)
         {
-            try
+            if (await _categoryRepository.UpdateAsync(hospital))
             {
-                return await _categoryRepository.UpdateAsync(hospital);
+                Console.WriteLine("Successfully updated");
+                return true;
             }
-            catch (Exception)
+            else
             {
+                try
+                {
+                    Console.WriteLine("Operation failed");
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Error: " + ex.Message);
+                }
                 return false;
             }
         }

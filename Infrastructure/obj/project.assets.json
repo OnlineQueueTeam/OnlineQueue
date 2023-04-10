@@ -119,7 +119,9 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v7.0",
         "dependencies": {
-          "Domain": "1.0.0"
+          "Dapper": "2.0.123",
+          "Domain": "1.0.0",
+          "Npgsql": "7.0.2"
         },
         "compile": {
           "bin/placeholder/Application.dll": {}
@@ -132,7 +134,8 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v7.0",
         "dependencies": {
-          "Dapper": "2.0.123"
+          "Dapper": "2.0.123",
+          "Npgsql": "7.0.2"
         },
         "compile": {
           "bin/placeholder/Domain.dll": {}
@@ -372,23 +375,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\user\\.nuget\\packages\\": {},
+    "C:\\Users\\acer\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\user\\Desktop\\OnlineuQueue\\Infrastructure\\Infrastructure.csproj",
+      "projectUniqueName": "C:\\Users\\acer\\source\\repos\\OnlineQueue\\Infrastructure\\Infrastructure.csproj",
       "projectName": "Infrastructure",
-      "projectPath": "C:\\Users\\user\\Desktop\\OnlineuQueue\\Infrastructure\\Infrastructure.csproj",
-      "packagesPath": "C:\\Users\\user\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\user\\Desktop\\OnlineuQueue\\Infrastructure\\obj\\",
+      "projectPath": "C:\\Users\\acer\\source\\repos\\OnlineQueue\\Infrastructure\\Infrastructure.csproj",
+      "packagesPath": "C:\\Users\\acer\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\acer\\source\\repos\\OnlineQueue\\Infrastructure\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\user\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\acer\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -404,11 +407,11 @@
         "net7.0": {
           "targetAlias": "net7.0",
           "projectReferences": {
-            "C:\\Users\\user\\Desktop\\OnlineuQueue\\Application\\Application.csproj": {
-              "projectPath": "C:\\Users\\user\\Desktop\\OnlineuQueue\\Application\\Application.csproj"
+            "C:\\Users\\acer\\source\\repos\\OnlineQueue\\Application\\Application.csproj": {
+              "projectPath": "C:\\Users\\acer\\source\\repos\\OnlineQueue\\Application\\Application.csproj"
             },
-            "C:\\Users\\user\\Desktop\\OnlineuQueue\\Domain\\Domain.csproj": {
-              "projectPath": "C:\\Users\\user\\Desktop\\OnlineuQueue\\Domain\\Domain.csproj"
+            "C:\\Users\\acer\\source\\repos\\OnlineQueue\\Domain\\Domain.csproj": {
+              "projectPath": "C:\\Users\\acer\\source\\repos\\OnlineQueue\\Domain\\Domain.csproj"
             }
           }
         }

@@ -32,6 +32,15 @@ namespace Infrastructure.Persistence
                     last_name varchar(50),
                     phone_number varchar(50)
                   );
+                  CREATE TYPE rating_hospital AS ENUM (
+                   'Competent',
+                   'Professional',
+                   'Compassionate',
+                   'Caring',
+                   'Knowledgeable',
+                   'Skilled'
+                   );
+
                 create table if not exists category (
                     category_id serial primary key,
                     category_name varchar(100)
@@ -39,7 +48,7 @@ namespace Infrastructure.Persistence
                   create table if not exists hospital (
                     hospital_id serial primary key,
                     name varchar(100),
-                    address varchar(200)
+                    rating rating_hospital
                     );
                   
                   create table if not exists physician (

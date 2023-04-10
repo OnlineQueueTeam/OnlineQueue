@@ -10,7 +10,7 @@ namespace Infrastructure.Connection
 {
     public class GetConnection
     {
-        private static readonly string _path = @"..\..\..\..\..\OnlineuQueue\Infrastructure\Connection\appSettings.json";
+        private static readonly string _path = @"..\..\..\..\..\OnlineQueue\Infrastructure\Connection\appSettings.json";
    
         public  static string? Connection()
         {

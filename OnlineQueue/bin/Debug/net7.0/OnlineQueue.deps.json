@@ -10,7 +10,9 @@
         "dependencies": {
           "Application": "1.0.0",
           "Dapper": "2.0.123",
-          "Infrastructure": "1.0.0"
+          "Domain": "1.0.0",
+          "Infrastructure": "1.0.0",
+          "Npgsql": "7.0.2"
         },
         "runtime": {
           "OnlineQueue.dll": {}
@@ -84,7 +86,9 @@
       },
       "Application/1.0.0": {
         "dependencies": {
-          "Domain": "1.0.0"
+          "Dapper": "2.0.123",
+          "Domain": "1.0.0",
+          "Npgsql": "7.0.2"
         },
         "runtime": {
           "Application.dll": {}
@@ -92,7 +96,8 @@
       },
       "Domain/1.0.0": {
         "dependencies": {
-          "Dapper": "2.0.123"
+          "Dapper": "2.0.123",
+          "Npgsql": "7.0.2"
         },
         "runtime": {
           "Domain.dll": {}
