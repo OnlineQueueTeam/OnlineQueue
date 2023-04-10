@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Domain.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +7,8 @@ using System.Threading.Tasks;
 
 namespace Application.Repository.Interfaces
 {
-    internal class IPatientRepository
+    public interface IPatientRepository:IRepository<Patient>
     {
+
     }
 }

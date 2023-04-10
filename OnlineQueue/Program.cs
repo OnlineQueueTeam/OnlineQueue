@@ -1,11 +1,12 @@
-﻿using Infrastructure.Persistence;
+﻿using Application.Handlers;
+using Application.Repository.Interfaces;
+using Domain.Models;
 
 class Program
 {
     static void Main(string[] args)
     {
-       DbContext dbContext = new DbContext();
-        //dbContext.CreateDb();
-        dbContext.InitializeTables();
+        
+        
     }
 }

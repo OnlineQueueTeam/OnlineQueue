@@ -6,7 +6,12 @@ using System.Threading.Tasks;
 
 namespace Application.Repository.Interfaces
 {
-    internal class IRepository
+    public interface IRepository<T> where T : class
     {
+        public Task<List<T>> GetAllAsync();
+        public Task<T> GetByIdAsync(int id);
+        public Task<bool> UpdateAsync(T entity);
+        public Task<bool> DeleteByIdAsync(int id);
+        public Task<bool> InsertAsync(T entity);
     }
 }

@@ -1,4 +1,5 @@
-﻿using Dapper;
+﻿using Application.Repository.Interfaces;
+using Dapper;
 using Domain.Models;
 using Npgsql;
 using System;
@@ -9,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Infrastructure.Persistence
 {
-    public class DbHospitalPhysician : IRepository<DbHospitalPhysician>
+    public class DbHospitalPhysician : IHospitalPhysicianRepository
     {
         public async Task AddAsync(DbHospitalPhysician obj)
         {
