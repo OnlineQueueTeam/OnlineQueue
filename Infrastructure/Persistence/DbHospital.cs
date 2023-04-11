@@ -18,8 +18,8 @@ namespace Infrastructure.Persistence
         {
             using var connection = new NpgsqlConnection(DbContext.conString);
             await connection.OpenAsync();
-            string query = "INSERT INTO hospital (name,address) VALUES (@Name,@Address)";
-           int rowsAffected= await connection.ExecuteAsync(query, obj);
+            string query = "INSERT INTO hospital (name,contact_info_id,rating) VALUES (@Name,@Id,@Rating)";
+           int rowsAffected= await connection.ExecuteAsync(query, new { Name=obj.Name,Id=obj.ContactInfo.Id,Rating=obj.Rating});
             return rowsAffected > 0;
         }
 
@@ -44,7 +44,18 @@ namespace Infrastructure.Persistence
         {
             using var connection = new NpgsqlConnection(DbContext.conString);
             await connection.OpenAsync();
-            string query = "select hospital_id as Id, name as Name, address as Address  from hospital";
+            string query = "select *  from hospital";
+            NpgsqlCommand cmd = new NpgsqlCommand();
+            cmd.CommandText = query;
+            cmd.Connection=connection;
+
+
+
+            ////NEED TO BE CONTINUED
+
+
+
+
             return  (await connection.QueryAsync<Hospital>(query)).ToList();
         }
 

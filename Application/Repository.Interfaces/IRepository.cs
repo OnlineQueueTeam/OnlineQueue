@@ -13,5 +13,6 @@ namespace Application.Repository.Interfaces
         public Task<bool> UpdateAsync(T entity);
         public Task<bool> DeleteByIdAsync(int id);
         public Task<bool> InsertAsync(T entity);
+        public Task InsertRangeAsync(List<T> entities);
     }
 }

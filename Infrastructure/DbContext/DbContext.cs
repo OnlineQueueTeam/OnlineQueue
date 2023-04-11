@@ -1,6 +1,7 @@
 ﻿using Domain.Models;
 using Infrastructure.Connection;
 using Npgsql;
+using System.Xml.Linq;
 
 namespace Infrastructure.Persistence
 {
@@ -48,6 +49,7 @@ namespace Infrastructure.Persistence
                   create table if not exists hospital (
                     hospital_id serial primary key,
                     name varchar(100),
+                    contact_info_id int references contact_info(id),
                     rating rating_hospital
                     );
                  create table contact_info
@@ -99,7 +101,8 @@ namespace Infrastructure.Persistence
             NpgsqlConnection connection = new NpgsqlConnection(conString.Replace(GetConnection.DatabaseName(), "postgres"));
             connection.Open();
             NpgsqlCommand cmd = new NpgsqlCommand();
-            cmd.CommandText = $"create database {GetConnection.DatabaseName()}";
+            cmd.CommandText = $"create database @dbname";
+            cmd.Parameters.AddWithValue("@dbname", GetConnection.DatabaseName());
             cmd.Connection= connection;
             cmd.ExecuteNonQuery();
             connection.Close();
