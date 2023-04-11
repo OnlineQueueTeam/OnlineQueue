@@ -18,13 +18,22 @@ namespace Application.Handlers
         }
         public async Task<bool> DeleteWaitListByIdAsync(int id)
         {
-            try
+            if (await _categoryRepository.DeleteByIdAsync(id))
             {
-                return await _categoryRepository.DeleteByIdAsync(id);
+                Console.WriteLine("Successfully Deleted");
+                return true;
             }
-            catch (Exception)
+            else
             {
+                try
+                {
 
+                    Console.WriteLine("Operation failed");
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
                 return false;
             }
         }
@@ -55,12 +64,22 @@ namespace Application.Handlers
 
         public async Task<bool> InsertWaitListAsync(WaitList WaitList)
         {
-            try
+            if (await _categoryRepository.InsertAsync(WaitList))
             {
-                return await _categoryRepository.InsertAsync(WaitList);
+                Console.WriteLine("Successfully Inserted");
+                return true;
             }
-            catch (Exception)
+            else
             {
+                try
+                {
+
+                    Console.WriteLine("Operation failed");
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
                 return false;
             }
         }
@@ -68,12 +87,22 @@ namespace Application.Handlers
 
         public async Task<bool> UpdateWaitListAsync(WaitList WaitList)
         {
-            try
+            if (await _categoryRepository.UpdateAsync(WaitList))
             {
-                return await _categoryRepository.UpdateAsync(WaitList);
+                Console.WriteLine("Successfully Updated");
+                return true;
             }
-            catch (Exception)
+            else
             {
+                try
+                {
+
+                    Console.WriteLine("Operation failed");
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
                 return false;
             }
         }

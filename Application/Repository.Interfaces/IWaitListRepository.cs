@@ -9,5 +9,6 @@ namespace Application.Repository.Interfaces
 {
     public interface IWaitListRepository:IRepository<WaitList>
     {
+
     }
 }

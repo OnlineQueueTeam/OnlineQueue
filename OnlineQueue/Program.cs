@@ -8,22 +8,9 @@ class Program
 {
     static void Main(string[] args)
     {
-        //ICategoryRepository category = new DbCategory();
-        //ICategoryHandler categoryHandler = new CategoryHandler(category);
-        //categoryHandler.InsertCategoryAsync(new()
-        //{
-        //    CategoryName = "Test111"
-        //});
-        //Console.ReadKey();
-        //DbContext dbContext = new DbContext();
-        //dbContext.CreateDb();
-        //dbContext.InitializeTables();
-        //TestPatient();
-        //TestCategory();
-       // TestHospital();
-        Console.ReadKey();
-
-
+        ICategoryRepository catRepo = new DbCategory();
+        ICategoryHandler categoryHandler = new CategoryHandler(catRepo);
+        categoryHandler.InsertCategoryAsync(new Category() { CategoryName = "Lor" }).Wait();
 
     }
 

@@ -18,13 +18,22 @@ namespace Application.Handlers
         }
         public async Task<bool> DeleteServingStatementByIdAsync(int id)
         {
-            try
+            if (await _categoryRepository.DeleteByIdAsync(id))
             {
-                return await _categoryRepository.DeleteByIdAsync(id);
+                Console.WriteLine("Successfully deleted");
+                return true;
             }
-            catch (Exception)
+            else
             {
+                try
+                {
 
+                    Console.WriteLine("Operation failed");
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
                 return false;
             }
         }
@@ -57,24 +66,44 @@ namespace Application.Handlers
 
         public async Task<bool> InsertServingStatementAsync(ServingStatement ServingStatement)
         {
-            try
+            if (await _categoryRepository.InsertAsync(ServingStatement))
             {
-                return await _categoryRepository.InsertAsync(ServingStatement);
+                Console.WriteLine("Successfully Inserted");
+                return true;
             }
-            catch (Exception)
+            else
             {
+                try
+                {
+
+                    Console.WriteLine("Operation failed");
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
                 return false;
             }
         }   
 
         public async Task<bool> UpdateServingStatementAsync(ServingStatement ServingStatement)
         {
-            try
+            if (await _categoryRepository.UpdateAsync(ServingStatement))
             {
-                return await _categoryRepository.UpdateAsync(ServingStatement);
+                Console.WriteLine("Successfully Updated");
+                return true;
             }
-            catch (Exception)
+            else
             {
+                try
+                {
+
+                    Console.WriteLine("Operation failed");
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
                 return false;
             }
         }
