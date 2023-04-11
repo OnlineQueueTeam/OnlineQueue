@@ -1,6 +1,7 @@
 ﻿using Application.Repository.Interfaces;
 using Dapper;
 using Domain.Models;
+using Domain.States;
 using Npgsql;
 using NpgsqlTypes;
 using System;
@@ -42,6 +43,7 @@ namespace Infrastructure.Persistence
 
         public async Task<List<Hospital>> GetAllAsync()
         {
+            List<Hospital> list = new List<Hospital>();
             using var connection = new NpgsqlConnection(DbContext.conString);
             await connection.OpenAsync();
             string query = "select *  from hospital";
@@ -49,9 +51,23 @@ namespace Infrastructure.Persistence
             cmd.CommandText = query;
             cmd.Connection=connection;
 
+            NpgsqlDataReader reader=cmd.ExecuteReader();
+
+            while (reader.Read())
+            {
+                list.Add(new Hospital()
+                {
+                    Id = reader.GetInt32(0),
+                    Name = reader.GetString(1),
+                    ContactInfo = await new DbContactInfo().GetByIdAsync(reader.GetInt32(2)),
+                    Rating = (RatingHospital)Enum.Parse(typeof(RatingHospital), reader[3].ToString())
+                });
+            }
+
+            return list;
 
 
-            ////NEED TO BE CONTINUED
+            
 
 
 
@@ -63,16 +79,17 @@ namespace Infrastructure.Persistence
         {
             using var connection = new NpgsqlConnection(DbContext.conString);
             await connection.OpenAsync();
-            string query = "select hospital_id as Id, name as Name, address as Address  from hospital where hospital_id=@Id";
-             return await connection.QueryFirstOrDefaultAsync<Hospital>(query);
+            string query = "select *  from hospital where hospital_id=@Id";
+             return await connection.QueryFirstOrDefaultAsync<Hospital>(query, new {Id=id});
         }
 
         public async Task<bool> UpdateAsync(Hospital entity)
         {
             using var connection = new NpgsqlConnection(DbContext.conString);
             await connection.OpenAsync();
-            string query = "update hospital set name = @Name, address = @Address  from hospital where hospital_id=@Id";
-            int res =  await connection.ExecuteAsync(query,entity);
+            string query = "update hospital set name = @Name, contact_info_id = @info_id, rating=@rating   from hospital where hospital_id=@Id";
+            int res =  await connection.ExecuteAsync(query, new {Name=entity.Name, info_id=entity.ContactInfo.Id,Id=entity.Id,rating=entity.Rating});
+
             if(res > 0) return true;
             return false;
         }
