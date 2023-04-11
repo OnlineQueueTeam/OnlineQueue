@@ -6,7 +6,13 @@ using System.Threading.Tasks;
 
 namespace Domain.Models
 {
-    internal class Contacts
+    public class Contacts
     {
+        public int Id { get; set; }
+        public Hospital Hospital { get; set; }
+        public string Address { get; set; }
+        public string Location { get; set; }
+        public string PhoneNumber { get; set; }
+        public string SocialMedia { get; set; }
     }
 }
