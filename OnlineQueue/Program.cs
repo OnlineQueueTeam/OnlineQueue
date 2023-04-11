@@ -15,9 +15,9 @@ class Program
         //    CategoryName = "Test111"
         //});
         //Console.ReadKey();
-        //DbContext dbContext = new DbContext();
-        //dbContext.CreateDb();
-        //dbContext.InitializeTables();
+        DbContext dbContext = new DbContext();
+        dbContext.CreateDb();
+        dbContext.InitializeTables();
         //TestPatient();
         //TestCategory();
        // TestHospital();

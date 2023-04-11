@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Domain.Models
 {
-    public class Contacts
+    public class ContactInfo
     {
         public int Id { get; set; }
         public Hospital Hospital { get; set; }
