@@ -50,6 +50,15 @@ namespace Infrastructure.Persistence
                     name varchar(100),
                     rating rating_hospital
                     );
+                 create table contact_info
+                 (
+                 id serial primary key,
+	             hospital_id int references hospital(hospital_id),
+	             address varchar(250),
+	             location varchar(250),
+	             phone_number varchar(250),
+	             social_media varchar(250)
+                  );
                   
                   create table if not exists physician (
                   physician_id serial primary key,
