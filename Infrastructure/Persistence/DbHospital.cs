@@ -19,8 +19,8 @@ namespace Infrastructure.Persistence
         {
             using var connection = new NpgsqlConnection(DbContext.conString);
             await connection.OpenAsync();
-            string query = "INSERT INTO hospital (name,contact_info_id,rating) VALUES (@Name,@Id,@Rating)";
-           int rowsAffected= await connection.ExecuteAsync(query, new { Name=obj.Name,Id=obj.ContactInfo.Id,Rating=obj.Rating});
+            string query = "INSERT INTO hospital (name,contact_info_id) VALUES (@Name,@Id)";
+           int rowsAffected= await connection.ExecuteAsync(query, new { Name=obj.Name,Id=obj.ContactInfo.Id});
             return rowsAffected > 0;
         }
 
@@ -60,7 +60,6 @@ namespace Infrastructure.Persistence
                     Id = reader.GetInt32(0),
                     Name = reader.GetString(1),
                     ContactInfo = await new DbContactInfo().GetByIdAsync(reader.GetInt32(2)),
-                    Rating = (RatingHospital)Enum.Parse(typeof(RatingHospital), reader[3].ToString())
                 });
             }
 
@@ -87,8 +86,8 @@ namespace Infrastructure.Persistence
         {
             using var connection = new NpgsqlConnection(DbContext.conString);
             await connection.OpenAsync();
-            string query = "update hospital set name = @Name, contact_info_id = @info_id, rating=@rating   from hospital where hospital_id=@Id";
-            int res =  await connection.ExecuteAsync(query, new {Name=entity.Name, info_id=entity.ContactInfo.Id,Id=entity.Id,rating=entity.Rating});
+            string query = "update hospital set name = @Name, contact_info_id = @info_id  from hospital where hospital_id=@Id";
+            int res =  await connection.ExecuteAsync(query, new {Name=entity.Name, info_id=entity.ContactInfo.Id,Id=entity.Id});
 
             if(res > 0) return true;
             return false;

@@ -3,14 +3,13 @@ using Application.Handlers;
 using Application.Repository.Interfaces;
 using Domain.Models;
 using Infrastructure.Persistence;
+using OnlineQueue.QueueUI;
 
 class Program
 {
     static void Main(string[] args)
     {
-        ICategoryRepository catRepo = new DbCategory();
-        ICategoryHandler categoryHandler = new CategoryHandler(catRepo);
-        categoryHandler.InsertCategoryAsync(new Category() { CategoryName = "Lor" }).Wait();
+        Presentation.UI();
 
     }
 
