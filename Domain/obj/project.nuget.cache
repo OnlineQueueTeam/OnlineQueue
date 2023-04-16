@@ -1,10 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "1jvk25xOI1WBxV6IicT0J+J508CtZDnivAdENKU26YzZ1FhZJZipcXwhLJQ3m0CVbwU/V/w9KtzH9TSc6FUCvw==",
+  "dgSpecHash": "xdlEGyDu/Wg7j9qIflbTOI2ISb58GIfK7kS3eFSX3/CljckKvYxNwNyo3oXTMU6eWiWafxOEyPnueph1SobgJg==",
   "success": true,
   "projectFilePath": "C:\\Users\\acer\\source\\repos\\OnlineQueue\\Domain\\Domain.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\acer\\.nuget\\packages\\dapper\\2.0.123\\dapper.2.0.123.nupkg.sha512",
+    "C:\\Users\\acer\\.nuget\\packages\\dapper.contrib\\2.0.78\\dapper.contrib.2.0.78.nupkg.sha512",
     "C:\\Users\\acer\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\6.0.0\\microsoft.extensions.logging.abstractions.6.0.0.nupkg.sha512",
     "C:\\Users\\acer\\.nuget\\packages\\npgsql\\7.0.2\\npgsql.7.0.2.nupkg.sha512"
   ],

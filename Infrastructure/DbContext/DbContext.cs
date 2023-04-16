@@ -16,30 +16,12 @@ namespace Infrastructure.Persistence
             connection.Open();
 
             string query = @"  
-                                  DO $$
-                                    BEGIN
-                                      IF NOT EXISTS (
-                                        SELECT 1 FROM pg_type WHERE typname = 'rating'
-                                      ) THEN
-                                        CREATE TYPE rating AS ENUM ('Competent','Professional','Compassionate','Caring','Knowledgeable','Skilled');
-                                      END IF;
-                                    END$$;
-
-
                      create table if not exists patient (
                     patient_id serial primary key,
                     first_name varchar(50),
                     last_name varchar(50),
                     phone_number varchar(50)
                   );
-                  CREATE TYPE rating_hospital AS ENUM (
-                   'Competent',
-                   'Professional',
-                   'Compassionate',
-                   'Caring',
-                   'Knowledgeable',
-                   'Skilled'
-                   );
 
                 create table if not exists category (
                     category_id serial primary key,
@@ -48,12 +30,12 @@ namespace Infrastructure.Persistence
                   create table if not exists hospital (
                     hospital_id serial primary key,
                     name varchar(100),
-                    rating rating_hospital
+                    rating varchar(50)
                     );
                  create table contact_info
                  (
                  id serial primary key,
-	             hospital_id int references hospital(hospital_id),
+                 hospital_id int references hospital(hospital_id),
 	             address varchar(250),
 	             location varchar(250),
 	             phone_number varchar(250),
@@ -67,7 +49,7 @@ namespace Infrastructure.Persistence
                   last_name varchar(50),
                   phone_number varchar(50),
                   experience_year float,
-                  rating rating 
+                  rating varchar(50)
                   );
                     create table if not exists hospital_physician (
                     id serial primary key,
@@ -76,14 +58,14 @@ namespace Infrastructure.Persistence
                     );
                   create table if not exists wait_list (
                     id serial primary key,
-                    patient_id int references patient(patient_id) unique ,
-                    physician_id int references physician(physician_id) unique,
+                    patient_id int references patient(patient_id) ,
+                    physician_id int references physician(physician_id),
                     joined_time timestamp default now()
                   );
                   create table if not exists serving_statement (
                     id serial primary key,
-                    patient_id int references wait_list(patient_id),
-                    physician_id int references wait_list(physician_id),
+                    patient_id int references patient(patient_id),
+                    physician_id int references physician(physician_id),
                     start_time timestamp default now(),
                     end_time timestamp 
                   )";

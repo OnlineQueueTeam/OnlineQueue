@@ -83,9 +83,9 @@ namespace Infrastructure.Persistence
                 {
                     list.Add(new WaitList()
                     {
-                        Id = reader.GetInt32(0),
-                        Physician=await new DbPhysician().GetByIdAsync(reader.GetInt32(1)),
-                        Patient=await new DbPatient().GetByIdAsync(reader.GetInt32(2)),
+                        Id = (int)reader["id"],
+                        Physician=await new DbPhysician().GetByIdAsync((int)reader["physician_id"]),
+                        Patient=await new DbPatient().GetByIdAsync((int)reader["patient_id"]),
                         JoinedTime=reader.GetDateTime(3)
                     }) ;
                 }

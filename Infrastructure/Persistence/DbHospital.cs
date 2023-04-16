@@ -1,13 +1,11 @@
 ﻿using Application.Repository.Interfaces;
 using Dapper;
 using Domain.Models;
+using Domain.States;
 using Npgsql;
-using NpgsqlTypes;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Npgsql.Internal.TypeHandling;
+using System.Diagnostics;
+using System.Xml.Linq;
 
 namespace Infrastructure.Persistence
 {
@@ -16,11 +14,17 @@ namespace Infrastructure.Persistence
 
         public async Task<bool> InsertAsync(Hospital obj)
         {
-            using var connection = new NpgsqlConnection(DbContext.conString);
-            await connection.OpenAsync();
-            string query = "INSERT INTO hospital (name,address) VALUES (@Name,@Address)";
-           int rowsAffected= await connection.ExecuteAsync(query, obj);
-            return rowsAffected > 0;
+            using (var cmd = new NpgsqlCommand())
+            {
+                cmd.Connection = new NpgsqlConnection(DbContext.conString);
+                cmd.Connection.Open();
+                cmd.CommandText = "INSERT INTO hospital (name, rating) VALUES (@Name, @HospitalRating)";
+
+                cmd.Parameters.AddWithValue("@Name", obj.Name);
+                cmd.Parameters.AddWithValue("@HospitalRating", obj.HospitalRating.ToString());
+
+                return await cmd.ExecuteNonQueryAsync() > 0;
+            }
         }
 
         public async Task InsertRangeAsync(List<Hospital> obj)
@@ -44,28 +48,45 @@ namespace Infrastructure.Persistence
         {
             using var connection = new NpgsqlConnection(DbContext.conString);
             await connection.OpenAsync();
-            string query = "select hospital_id as Id, name as Name, address as Address  from hospital";
+            string query = "select hospital_id as Id, name as Name, rating as HospitalRating  from hospital";
             return  (await connection.QueryAsync<Hospital>(query)).ToList();
         }
 
         public async Task<Hospital> GetByIdAsync(int id)
         {
-            using var connection = new NpgsqlConnection(DbContext.conString);
+            using NpgsqlConnection connection = new(DbContext.conString);
             await connection.OpenAsync();
-            string query = "select hospital_id as Id, name as Name, address as Address  from hospital where hospital_id=@Id";
-             return await connection.QueryFirstOrDefaultAsync<Hospital>(query);
+            string cmdText = @"select * from hospital where hospital_id=@id";
+            using NpgsqlCommand cmd = new(cmdText, connection);
+            cmd.Parameters.AddWithValue("@id", id);
+
+            using NpgsqlDataReader reader = await cmd.ExecuteReaderAsync();
+            if (await reader.ReadAsync())
+            {
+                Hospital hospital = new()
+                {
+                    Id = (int)reader["hospital_id"],
+                    Name = reader["name"]?.ToString(),
+                    HospitalRating = Enum.Parse<HospitalRating>(reader["rating"]?.ToString()),
+                };
+                return hospital;
+            }
+            return null;
         }
 
         public async Task<bool> UpdateAsync(Hospital entity)
         {
-            using var connection = new NpgsqlConnection(DbContext.conString);
-            await connection.OpenAsync();
-            string query = "update hospital set name = @Name, address = @Address  from hospital where hospital_id=@Id";
-            int res =  await connection.ExecuteAsync(query,entity);
-            if(res > 0) return true;
-            return false;
+            using NpgsqlConnection connection = new(DbContext.conString);
+            connection.Open();
+            string cmdText = @"update hospital set name = @Name, rating = @HospitalRating  from hospital where hospital_id = @Id";
+            NpgsqlCommand cmd = new(cmdText, connection);
+            cmd.Parameters.AddWithValue("@Name", entity.Name);
+            cmd.Parameters.AddWithValue("@HospitalRating", entity.HospitalRating.ToString());
+            return await cmd.ExecuteNonQueryAsync() > 0;
         }
+       
 
-      
+
+
     }
 }

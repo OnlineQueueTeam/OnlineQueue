@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Domain.States
 {
-    public enum Rating:byte
+    public enum PhysicianRating:byte
     {
         Competent,
         Professional,

@@ -1,10 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "RDfXuWEN2/EAJds3YPYJNtvnr2N604bF1ekRE+4XdANmOeMGCkoTyBpzZnRCFPvgpXDQOSjqv6ezNf+cXz88aA==",
+  "dgSpecHash": "j+1EJRYdFqNtG/aT7b6EDAFRl8t+adW64udn43lVbdXAb2mRm5tE0tbKmd8i7RBXAfcHnId9p0/XOBD51JmsdA==",
   "success": true,
   "projectFilePath": "C:\\Users\\acer\\source\\repos\\OnlineQueue\\Infrastructure\\Infrastructure.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\acer\\.nuget\\packages\\dapper\\2.0.123\\dapper.2.0.123.nupkg.sha512",
+    "C:\\Users\\acer\\.nuget\\packages\\dapper.contrib\\2.0.78\\dapper.contrib.2.0.78.nupkg.sha512",
     "C:\\Users\\acer\\.nuget\\packages\\microsoft.extensions.configuration\\7.0.0\\microsoft.extensions.configuration.7.0.0.nupkg.sha512",
     "C:\\Users\\acer\\.nuget\\packages\\microsoft.extensions.configuration.abstractions\\7.0.0\\microsoft.extensions.configuration.abstractions.7.0.0.nupkg.sha512",
     "C:\\Users\\acer\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\6.0.0\\microsoft.extensions.logging.abstractions.6.0.0.nupkg.sha512",

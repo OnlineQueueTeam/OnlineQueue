@@ -62,7 +62,7 @@ namespace Application.Handlers
         {
             if (await _categoryRepository.InsertAsync(patient))
             {
-                Console.WriteLine("Successfully added");
+                //Console.WriteLine("Successfully added");
                 return true;
             }
             else

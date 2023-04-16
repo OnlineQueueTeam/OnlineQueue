@@ -13,8 +13,10 @@ namespace Infrastructure.Persistence
             await connection.OpenAsync();
             
             string query = "INSERT INTO hospital_physician (hospital_id,physician_id) VALUES (@HospitalId,@PhysicianId)";
-            int a=await connection.ExecuteAsync(query, new {HospitalId=obj.Hospital.Id, PhysicianId=obj.Physician.Id});
-            return a> 0;
+            NpgsqlCommand command = new NpgsqlCommand(query, connection);
+            command.Parameters.AddWithValue("@HospitalId", obj.Hospital.Id);
+            command.Parameters.AddWithValue("@PhysicianId", obj.Physician.Id);
+            return await command.ExecuteNonQueryAsync() > 0;
         }
 
        
@@ -25,7 +27,7 @@ namespace Infrastructure.Persistence
             {
                 await InsertAsync(item);
             }
-        }
+        }                                                                                    
 
       
 

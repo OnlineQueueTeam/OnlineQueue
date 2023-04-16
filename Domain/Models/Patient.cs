@@ -13,7 +13,7 @@ namespace Domain.Models
 
         public override string ToString()
         {
-            return $"PatientId{PatientId}, FirstName {FirstName}, LastName {LastName}, PhoneNumber{PhoneNumber}";
+            return $"PatientId:{PatientId}, FirstName:{FirstName}, LastName:{LastName}, PhoneNumber:{PhoneNumber}";
         }
     }
 }

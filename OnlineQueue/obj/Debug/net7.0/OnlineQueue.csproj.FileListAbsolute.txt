@@ -83,3 +83,4 @@ C:\Users\acer\source\repos\OnlineQueue\OnlineQueue\bin\Debug\net7.0\Microsoft.Ex
 C:\Users\acer\source\repos\OnlineQueue\OnlineQueue\bin\Debug\net7.0\Microsoft.Extensions.Primitives.dll
 C:\Users\acer\source\repos\OnlineQueue\OnlineQueue\bin\Debug\net7.0\Application.dll
 C:\Users\acer\source\repos\OnlineQueue\OnlineQueue\bin\Debug\net7.0\Application.pdb
+C:\Users\acer\source\repos\OnlineQueue\OnlineQueue\bin\Debug\net7.0\Dapper.Contrib.dll

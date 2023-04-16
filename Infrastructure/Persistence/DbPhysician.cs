@@ -14,17 +14,16 @@ namespace Infrastructure.Persistence
         {
             using NpgsqlConnection connection = new(conString);
             connection.Open();
-            string cmdText = @$"insert into physician(category_id,hospital_id,first_name, last_name,phone_number,experience_year,rating) 
-                    values (@CategoryId , @HospitalId,@FirstName, @LastName,@PhoneNumber,@ExperienceYear,@Rating)";
+            string cmdText = @$"insert into physician(category_id,first_name, last_name,phone_number,experience_year,rating) 
+                    values (@CategoryId,@FirstName, @LastName,@PhoneNumber,@ExperienceYear,@Rating)";
            
             int rowsAffected=await connection.ExecuteAsync(cmdText, new {CategoryId=obj.Category.CategoryId,
-                                                         HospitalId=obj.Hospital.Id,
                                                          FirstName=obj.FirstName,
                                                          LastName=obj.LastName,
                                                          PhoneNumber=obj.PhoneNumber,
                                                          ExperienceYear=obj.ExperienceYear,
-                                                         Rating=obj.Rating
-             });
+                                                         Rating=obj.Rating.ToString(),
+             });;
 
             return rowsAffected > 0;
         }
@@ -52,6 +51,7 @@ namespace Infrastructure.Persistence
         {
             List<Physician> result = new();
             using NpgsqlConnection connection = new NpgsqlConnection(conString);
+            connection.Open();
             string cmdText = "SELECT * FROM physician";
             NpgsqlCommand cmd=new NpgsqlCommand(cmdText, connection);
             NpgsqlDataReader reader= cmd.ExecuteReader();
@@ -61,12 +61,11 @@ namespace Infrastructure.Persistence
                 {
                     Id = reader.GetInt32(0),
                     Category=await new DbCategory().GetByIdAsync((int)reader["category_id"]),
-                    Hospital=await new DbHospital().GetByIdAsync((int)reader["hospital_id"]),
-                    FirstName = reader["first_name"].ToString()?? "Undefined",
+                    FirstName = reader["first_name"].ToString(),
                     LastName = reader["last_name"].ToString(),
-                    PhoneNumber = reader["phone_number"].ToString() ?? "Undefined",
-                    ExperienceYear = (int)reader["experience_year"],
-                    Rating = (Rating)Enum.Parse(typeof(Rating), reader["rating"].ToString())
+                    PhoneNumber = reader["phone_number"].ToString(),
+                    ExperienceYear = (double)reader["experience_year"],
+                    Rating = Enum.Parse<PhysicianRating>( reader["rating"].ToString())
 
 
                 }
@@ -81,13 +80,31 @@ namespace Infrastructure.Persistence
         {
             using NpgsqlConnection connection = new(conString);
             connection.Open();
-            string cmdText = @"SELECT physician_id PhysicianId, category_id CategoryId, first_name FirstName, last_name LastName, phone_number PhoneNumber, experience_year ExperienceYear, rating Rating FROM physician where physician_id = @Id";
-            return await connection.QueryFirstAsync<Physician>(cmdText, new {Id = id});
+            string cmdText = @"SELECT * FROM physician where physician_id = @Id";
+            NpgsqlCommand command = new NpgsqlCommand(cmdText, connection);
+            command.Parameters.AddWithValue("@Id" , id);
+            NpgsqlDataReader reader = await command.ExecuteReaderAsync();
+            while (reader.Read())
+            {
+                Physician physician = new()
+                {
+                    Id = (int)reader["physician_id"],
+                    Category = await new DbCategory().GetByIdAsync((int)reader["category_id"]),
+                    ExperienceYear = (double)reader["experience_year"],
+                    FirstName = reader["first_name"].ToString(),
+                    LastName = reader["last_name"].ToString(),
+                    PhoneNumber = reader["phone_number"].ToString(),
+                    Rating = Enum.Parse<PhysicianRating>(reader["rating"].ToString()),
+
+                };
+                return physician;
+            }
+            return null;
         }
 
         public async Task<bool> UpdateAsync(Physician entity)
         {
-            string cmdText = @"update physician set  category_id = @CategoryId,hospital_id=@HospitalId,first_name = @FirstName, last_name = @LastName,phone_number = @PhoneNumber,experience_year=@ExperienceYear,rating=@Rating where physician_id=@Id
+            string cmdText = @"update physician set  category_id = @CategoryId,first_name = @FirstName, last_name = @LastName,phone_number = @PhoneNumber,experience_year=@ExperienceYear,rating=@Rating where physician_id=@Id
                    ";
 
             using NpgsqlConnection connection = new NpgsqlConnection(conString);
@@ -95,7 +112,6 @@ namespace Infrastructure.Persistence
             int rowsAffected = await connection.ExecuteAsync(cmdText, new {
                                                                            Id = entity.Id,
                                                                            CategoryId=entity.Category.CategoryId,
-                                                                           HospitalId=entity.Hospital.Id,
                                                                            FirstName=entity.FirstName,
                                                                            LastName=entity.LastName,
                                                                            PhoneNumber=entity.PhoneNumber,

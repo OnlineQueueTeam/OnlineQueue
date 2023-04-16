@@ -75,13 +75,25 @@ namespace Infrastructure.Persistence
 
         public async Task<ServingStatement> GetByIdAsync(int id)
         {
-            using (NpgsqlConnection connection = new NpgsqlConnection(conString))
+            ServingStatement servingStatement = null;
+            using NpgsqlConnection connection= new NpgsqlConnection(conString);
+            connection.Open();
+            string cmdText = @"select * from serving_statement where id=@id";
+            NpgsqlCommand cmd = new(cmdText, connection);
+            cmd.Parameters.AddWithValue("@id", id);
+            NpgsqlDataReader reader= await cmd.ExecuteReaderAsync();
+            while(reader.Read())
             {
-                connection.Open();
-
-                var result = await connection.QueryFirstAsync<ServingStatement>("select * from serving_statement where id=@Id", new { Id = id });
-                return result;
+                servingStatement = new()
+                {
+                    Id = (int)reader["id"],
+                    Patient = await new DbPatient().GetByIdAsync((int)reader["patient_id"]),
+                    Physician = await new DbPhysician().GetByIdAsync((int)reader["physician_id"]),
+                    StartTime = (DateTime)reader["start_time"],
+                    EndTime = (DateTime)reader["end_time"]
+                };
             }
+            return servingStatement;
         }
 
         public async Task<bool> UpdateAsync(ServingStatement entity)
@@ -90,7 +102,7 @@ namespace Infrastructure.Persistence
             {
                 connection.Open();
 
-                int res = await connection.ExecuteAsync("update serving_statement set patient_id=@PatientId,phisician_id=@PhysicianId, start_time=@start, end_time=@end where id=@Id", new
+                int res = await connection.ExecuteAsync("update serving_statement set patient_id=@PatientId,physician_id=@PhysicianId, start_time=@StartTime, end_time=@EndTime where id=@Id", new
                 {
                     Id=entity.Id,
                     PatientId=entity.Patient.PatientId,
