@@ -411,23 +411,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\acer\\.nuget\\packages\\": {},
+    "C:\\Users\\user\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\acer\\source\\repos\\OnlineQueue\\Infrastructure\\Infrastructure.csproj",
+      "projectUniqueName": "C:\\Users\\user\\Desktop\\LastUpdate\\OnlineQueue\\Infrastructure\\Infrastructure.csproj",
       "projectName": "Infrastructure",
-      "projectPath": "C:\\Users\\acer\\source\\repos\\OnlineQueue\\Infrastructure\\Infrastructure.csproj",
-      "packagesPath": "C:\\Users\\acer\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\acer\\source\\repos\\OnlineQueue\\Infrastructure\\obj\\",
+      "projectPath": "C:\\Users\\user\\Desktop\\LastUpdate\\OnlineQueue\\Infrastructure\\Infrastructure.csproj",
+      "packagesPath": "C:\\Users\\user\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\user\\Desktop\\LastUpdate\\OnlineQueue\\Infrastructure\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\acer\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\user\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -443,11 +443,11 @@
         "net7.0": {
           "targetAlias": "net7.0",
           "projectReferences": {
-            "C:\\Users\\acer\\source\\repos\\OnlineQueue\\Application\\Application.csproj": {
-              "projectPath": "C:\\Users\\acer\\source\\repos\\OnlineQueue\\Application\\Application.csproj"
+            "C:\\Users\\user\\Desktop\\LastUpdate\\OnlineQueue\\Application\\Application.csproj": {
+              "projectPath": "C:\\Users\\user\\Desktop\\LastUpdate\\OnlineQueue\\Application\\Application.csproj"
             },
-            "C:\\Users\\acer\\source\\repos\\OnlineQueue\\Domain\\Domain.csproj": {
-              "projectPath": "C:\\Users\\acer\\source\\repos\\OnlineQueue\\Domain\\Domain.csproj"
+            "C:\\Users\\user\\Desktop\\LastUpdate\\OnlineQueue\\Domain\\Domain.csproj": {
+              "projectPath": "C:\\Users\\user\\Desktop\\LastUpdate\\OnlineQueue\\Domain\\Domain.csproj"
             }
           }
         }
